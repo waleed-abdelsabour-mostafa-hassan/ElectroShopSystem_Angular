@@ -1,0 +1,169 @@
+<div class="col-md-12">
+  <div class="row">
+    <!-- product -->
+    <div
+      class="product col-3 mb-5"
+      *ngFor="
+        let prod of allProduct
+          | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: curr,
+                totalItems: totalitems
+              }
+      "
+    >
+      <!-- <div class="product-img">
+        <img src="assets/img/product03.png" alt="" />
+        <div class="product-label">
+          <span class="sale">-30%</span>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Category</p>
+        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+        <h4 class="product-price">
+          $980.00 <del class="product-old-price">$990.00</del>
+        </h4>
+        <div class="product-rating"></div>
+        <div class="product-btns">
+          <button class="add-to-wishlist">
+            <i class="fa fa-heart-o"></i
+            ><span class="tooltipp">add to wishlist</span>
+          </button>
+          <button class="add-to-compare">
+            <i class="fa fa-exchange"></i
+            ><span class="tooltipp">add to compare</span>
+          </button>
+          <button class="quick-view">
+            <i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+          </button>
+        </div>
+      </div>
+      <div class="add-to-cart">
+        <button class="add-to-cart-btn">
+          <i class="fa fa-shopping-cart"></i> add to cart
+        </button>
+      </div>
+    </div> -->
+
+      <!-- <section class="sec" style="background-color: #eee"> -->
+      <!-- <div class="container py-5"> -->
+      <!-- <div class="row justify-content-center"> -->
+      <!-- <div
+            class="col-md-8 col-lg-6 col-xl-4"
+          > -->
+      <div class="chaildPrducts card" style="border-radius: 15px">
+        <div
+          class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+          data-mdb-ripple-color="light"
+        >
+          <img
+            src="{{ prod.img }}"
+            style="border-top-left-radius: 15px; border-top-right-radius: 15px"
+            class="img-fluid"
+            alt="Laptop"
+          />
+          <a href="#!"> <div class="mask"></div> </a>
+        </div>
+        <div class="card-body pb-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <p>
+                <a href="#!" class="text-dark">{{ prod.name }}</a>
+              </p>
+
+              <p class="small text-muted"></p>
+            </div>
+            <div>
+              <!-- <p class="text-dark">##{{ prod.subCategoryName}}</p> -->
+
+              <p class="small text-muted">{{ prod.subCategoryName }}</p>
+            </div>
+          </div>
+        </div>
+        <hr class="my-0" />
+        <div class="card-body pb-0">
+          <div class="d-flex justify-content-between">
+            <p>${{ prod.price }}</p>
+            <del *ngIf="prod.discount != 0"
+              >${{ prod.price + (prod.discount / 100) * prod.price }}</del
+            >
+            <div>
+              <p class="text-dark">Quantity : {{ prod.countProduct }}</p>
+            </div>
+          </div>
+          <!-- <p class="small text-muted">VISA Platinum</p> -->
+        </div>
+        <div>
+          <hr class="my-0" />
+
+          <div class="card-body">
+            <div
+              class="d-flex justify-content-center align-items-center pb-2 mb-1"
+            >
+              <button
+                (click)="gotoProductDetails(prod.id)"
+                type="button"
+                class="m-1 btnn btn btn-info"
+              >
+                Details
+              </button>
+
+              <button (click)="editProduct(prod.id)" type="button" class="btn btnn btn-warning">Edit</button>
+            </div>
+            <hr class="my-0" />
+
+            <div
+              class="hight10 d-flex justify-content-center align-items-center"
+            >
+              <Button
+                type="button"
+                class="btn btn-danger"
+                (click)="ChangeActivityStatus(prod.id, status.value)"
+              >
+                Change Status</Button
+              >
+              <select class="m-2 selectt" #status name="status" id="">
+                <option
+                  *ngIf="prod.active == 'False'"
+                  selected
+                  name="status"
+                  value="0"
+                >
+                  False
+                </option>
+                <option *ngIf="prod.active != 'False'" name="status" value="0">
+                  False
+                </option>
+                <option
+                  *ngIf="prod.active != 'False'"
+                  selected
+                  name="status"
+                  value="1"
+                >
+                  True
+                </option>
+
+                <option *ngIf="prod.active == 'False'" name="status" value="1">
+                  True
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /product -->
+    </div>
+    <!-- </div>
+      <!-- </section> -->
+
+    <pagination-controls
+      class="text-center mt-5 my-pagination"
+      (pageChange)="curr = $event"
+    ></pagination-controls>
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+</div>

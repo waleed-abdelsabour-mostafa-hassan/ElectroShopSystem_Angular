@@ -1,0 +1,26 @@
+<div class="container">
+  <article class="card">
+  <header class="card-header"> My Orders / Tracking </header>
+  <div class="card-body">
+  <h6>Order ID: {{data.id}}</h6>
+  <article class="card">
+  <div class="card-body row">
+  <div class="col"> <strong>Estimated Delivery time:</strong> <br>{{data.orderPlace_Date| date:'medium'}} </div>
+  <div class="col"> <strong>Shipping BY:</strong> <br>  Electro <span style="color: red;">MWK</span>, | <i class="fa fa-phone"></i> +012 1170 3455 </div>
+  <div class="col"> <strong>Status:</strong> <br> {{data.satus}} </div>
+  <div class="col"> <strong>Tracking #:</strong> <br> {{data.id}} </div>
+  </div>
+  </article>
+  <div class="track">
+  <div [class]="Orderconfirmed" > <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+  <div [class]="Pickedbycourier"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+  <div [class]="Ontheway"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+  <div [ngClass]="Readyforpickup"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Ready for pickup</span> </div>
+  </div>
+  <hr>
+
+  <hr>
+  <a (click)="Close()" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+  </div>
+  </article>
+  </div>

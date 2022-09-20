@@ -1,0 +1,252 @@
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- Product thumb imgs -->
+      <div class="col-md-7 col-md-pull-5">
+        <gallery
+          class="bg-white"
+          [items]="Imgss"
+          thumbPosition="left"
+        ></gallery>
+      </div>
+      <!-- /Product thumb imgs -->
+
+      <!-- Product details -->
+      <div class="col-md-5">
+        <div class="product-details">
+          <h2 class="product-name">{{ Product.name }}</h2>
+          <div>
+            <!-- <div class="product-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div> -->
+            <!-- <a class="review-link" href="#">10 Review(s) | Add your review</a> -->
+          </div>
+          <div>
+            <h3 class="product-price">
+              ${{ Product.price }}
+              <del class="product-old-price"
+                >${{
+                  Product.price + (Product.discount / 100) * Product.price
+                }}</del
+              >
+            </h3>
+            <span *ngIf="Product.countProduct != 0" class="product-available"
+              >In Stock
+            </span>
+            <span *ngIf="Product.countProduct == 0" class="product-available"
+              >Out Of Stock</span
+            >
+          </div>
+          <p>
+            {{ Product.description }}
+          </p>
+
+          <!-- <div class="product-options">
+            <label>
+              Size
+              <select class="input-select">
+                <option value="0">X</option>
+              </select>
+            </label>
+            <label>
+              Color
+              <select class="input-select">
+                <option value="0">Red</option>
+              </select>
+            </label>
+          </div> -->
+
+          <div class="add-to-cart">
+            <div class="qty-label">
+              Qty
+              <div>
+                <input
+                  type="number"
+                  #inpuvalue
+                  class="form-control"
+                  min="1"
+                  value="1"
+                  max="{{ Product.countProduct }}"
+                />
+              </div>
+            </div>
+            <button
+              (click)="AddCard(Product.id, inpuvalue.value)"
+              class="add-to-cart-btn"
+            >
+              <i class="fa fa-shopping-cart"></i> add to cart
+            </button>
+          </div>
+
+          <ul class="product-btns">
+            <li
+              (click)="addNewFavoritProduct(Product.id)"
+              *ngIf="prodIsFavorite.prodID <= 0"
+            >
+              <a><i class="fa fa-heart-o"></i> Add to wishlist</a>
+            </li>
+            <li
+              (click)="remove(prodIsFavorite.prodID)"
+              *ngIf="prodIsFavorite.prodID > 0"
+            >
+              <a>
+                <i class="fa fa-heart fa-o" style="color: red"></i> Remove from
+                wishlist</a
+              >
+            </li>
+          </ul>
+          <ul class="product-links">
+            <li>Categories :</li>
+            <li>
+              <a href="#">{{ Product.subCategoryName }}</a>
+            </li>
+          </ul>
+
+          <ul class="product-links">
+            <li>Sold by</li>
+            <li>
+              <a href="#">{{ Product.sellerName }}</a>
+            </li>
+          </ul>
+          <ul class="product-links">
+            <li>Ships from</li>
+            <li><a>Electro.</a></li>
+          </ul>
+          <!-- <ul class="product-links">
+            <li>Share:</li>
+            <li>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-envelope"></i></a>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+      <!-- /Product details -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+<section class="center">
+  <div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Display</td>
+          <td>{{ Product.screenSize }}</td>
+        </tr>
+
+        <tr>
+          <td>Memory</td>
+          <td>{{ Product.hardDrive }}</td>
+        </tr>
+        <tr>
+          <td>Ram</td>
+          <td>{{ Product.ram }}</td>
+        </tr>
+        <tr>
+          <td>Processor</td>
+          <td>{{ Product.processor }}</td>
+        </tr>
+        <tr>
+          <td>Camera</td>
+          <td>{{ Product.camera }}</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>{{ Product.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div *ngFor="let img of Imgs">
+    <img src="{{ img.name }}" alt="" />
+  </div> -->
+</section>
+
+<div class="container">
+  <div class="profile-content">
+    <!-- begin tab-content -->
+    <div class="tab-content p-0">
+      <!-- begin #profile-post tab -->
+      <div class="tab-pane fade active show" id="profile-post">
+        <div class="timeline-body">
+          <div class="timeline-comment-box">
+            <div class="d-flex flex-row add-comment-section">
+              <img
+                class="img-fluid img-responsive rounded-circle mr-2"
+                src="https://i.imgur.com/qdiP4DB.jpg"
+                width="38"
+              />
+              <input
+                type="text"
+                #commentInput
+                style="margin-right: 20px; margin-left: 10px"
+                class="form-control mr-3"
+                placeholder="Add comment"
+              />
+              <button
+                (click)="
+                  addNewComment('2r', Product.id, this.commentInput.value)
+                "
+                class="btn btn-primary"
+                type="button"
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        </div>
+        <li>
+          <hr />
+          <div class="card">
+            <div *ngFor="let comment of CommentsOfProduct" class="card-body">
+              <div class="timeline-body">
+                <div class="timeline-header">
+                  <span class="userimage"
+                    ><img class="smallImg" src="{{ comment.userImg }}" alt=""
+                  /></span>
+                  <span class="username">{{ comment.userName }}</span>
+                  <span class="pull-right text-muted">
+                    {{ comment.date | date: "longDate" }}
+                  </span>
+                </div>
+                <div class="timeline-content">
+                  <p class="lead">
+                    <i class="fa fa-quote-left fa-fw pull-left"></i>
+                    {{ comment.comment }}
+                    <i class="fa fa-quote-right fa-fw pull-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end timeline-body -->
+        </li>
+        <!-- end timeline -->
+      </div>
+      <!-- end #profile-post tab -->
+    </div>
+    <!-- end tab-content -->
+  </div>
+</div>

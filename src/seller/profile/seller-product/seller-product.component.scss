@@ -1,0 +1,79 @@
+.sec {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.hight10 {
+  height: 53px;
+}
+.selectt {
+  height: 35px;
+  width: 40%;
+}
+// .flexxx Button,
+// .flexxx select,
+// .flexxx div {
+//   display: flex;
+// }
+.chaildPrducts {
+  display: flex;
+  margin: 0px;
+  width: 100%;
+  padding: 13px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+}
+.padmd {
+  padding-left: 44px;
+  padding-top: 11px;
+}
+@media (min-width: 1200px) {
+  .col-xl-4 {
+    flex: 0 0 auto;
+    width: 32%;
+  }
+}
+.btnn {
+  /* color: #eee; */
+  height: 40px;
+}
+
+.col-3 {
+  flex: 0 0 auto;
+  width: 30%;
+}
+@media (min-width: 992px) {
+  .col-lg-6 {
+    flex: 0 0 auto;
+    width: 30%;
+  }
+}
+.product {
+  position: relative;
+  margin: 20px 19px !important;
+  border-radius: 10px;
+}
+.card {
+  --bs-card-cap-color: none !important;
+  --bs-card-border-color: none !important;
+}
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  justify-content: space-evenly;
+}
+.col-3 {
+  width: 27%;
+  height: fit-content;
+}

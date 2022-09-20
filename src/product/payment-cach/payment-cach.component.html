@@ -1,0 +1,27 @@
+<form [formGroup]='paymentform' (ngSubmit)="Payment()">
+
+<div class="row mb-3">
+  <div class="col-6">
+  State
+          <select formControlName="State" class="form-control">
+            <option value="Cairo" selected >--Please Selet State--</option>
+            <option value="Cairo"  >Cairo</option>
+            <option value="Cairo"  >Assuit</option>
+            <option value="Cairo"  >Alexandria</option>
+          </select>
+  </div>
+  <div class="col-6">
+    Address
+    <input formControlName="Address" class="form-control">
+  </div>
+  </div>
+
+  <div class="text-center"><h1>Are You Sure  Payment Products Cach </h1> </div>
+
+  <div class="input-group mt-5">
+
+    <button [disabled]="paymentform.invalid" type="submit" class='btn btn-success form-control'>Payment</button>
+    <button type="button" style="margin-left: 40%;" (click)="Close()"
+      class='btn btn-danger form-control'>Close</button>
+  </div>
+</form>

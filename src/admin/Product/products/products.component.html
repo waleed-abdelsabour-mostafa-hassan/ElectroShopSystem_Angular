@@ -1,0 +1,85 @@
+<div class="container">
+  <div>
+    <a class="btn btn-success mt-5" routerLink="../AddProduct"
+      >Add New Product</a
+    >
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-1" style="padding-top: 4px; font-weight: bolder">
+      <span style="text-align: center">search :</span>
+    </div>
+    <div class="col-4">
+      <input class="form-control" type="text" (keyup)="Search($event)" />
+    </div>
+    <div class="col-12"></div>
+    <!-- <div class="col-1"></div> -->
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead style="text-align: center">
+          <th class="hand" (click)="SortWithID()">
+            ID<mat-icon> import_export</mat-icon>
+          </th>
+          <th class="hand" (click)="SortWithName()">
+            Name<mat-icon> import_export</mat-icon>
+          </th>
+          <th class="hand" (click)="SortWithPrice()">
+            Price<mat-icon> import_export</mat-icon>
+          </th>
+          <th>Discount</th>
+          <th>Price After Discount</th>
+          <th>Img</th>
+          <th>Genre</th>
+          <th>Status</th>
+
+          <th>Action</th>
+        </thead>
+        <tbody *ngIf="test">
+          <tr
+            *ngFor="let item of products"
+            class="mt-2 pt-2"
+            style="text-align: center"
+          >
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.discount }}</td>
+            <td>{{ item.priceAfterDisc }}</td>
+            <td><img [src]="item.img" /></td>
+            <td>{{ item.subCategoryName }}</td>
+            <td>{{ item.active }}</td>
+
+            <td>
+              <a
+                class="btn btn-warning"
+                routerLink="../ProductImages/{{ item.id }}"
+                >Images</a
+              >&nbsp;&nbsp;
+              <a
+                class="btn btn-success"
+                routerLink="../EditProduct/{{ item.id }}"
+                >Edit</a
+              >&nbsp;&nbsp;
+              <button
+                class="btn btn-danger"
+                (click)="DeleteProduct(item.id, $event)"
+              >
+                Del X
+              </button>
+              <Button
+                type="button"
+                class="btn btn-info ml-3"
+                (click)="
+                  ChangeActivityStatus(item.userId, item.id, item.active)
+                "
+              >
+                Change</Button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--  <div class="col-1"></div> -->
+  </div>
+</div>

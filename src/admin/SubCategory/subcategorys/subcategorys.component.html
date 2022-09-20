@@ -1,0 +1,26 @@
+<div class="container">
+  <a  (click)="addSubCategory()" class="btn btn-outline-success mt-3">Add SubCategory <i class="fa fa-plus-circle"></i></a>
+  <br>
+  <input #myinput class="m-2 form-control" type="text" [(ngModel)]="name" placeholder="Search" (ngModelChange)="search()">
+  <table class="table  table-hover">
+    <thead>
+      <tr>
+        <th (click)="sort('id')">SubCategory ID&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('id')">SubCategory Name&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('id')">Category&nbsp;<i class="fa fa-sort"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sub of subCategoryList|orderBy:key:reverse"  >
+         <td>{{sub.id}}</td>
+        <td>{{sub.name}}</td>
+        <td>{{sub.categoryName}}</td>
+
+
+        <td> <a (click)="editSubCategory(sub)" class="btn btn-success">Edit</a></td>
+        <td> <a  (click)="Delete(sub.id)"  class="btn btn-danger">delete</a></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

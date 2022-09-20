@@ -1,0 +1,25 @@
+
+<div class="container mt-4">
+
+  <table class="table table-hover table-bordered table-striped ">
+    <thead>
+      <tr class="bg-dark text-light">
+        <th> userName</th>
+        <th>Role Name </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-light" *ngFor="let item of UserRoles">
+        <td scope="row">{{item.userName}} <input type="hidden" value="{{item.userId}}"></td>
+        <td>{{item.roleName}} <input type="hidden" value="{{item.roleId}}"></td>
+        <td>
+           <div>
+           <button type="submit" (click)="EditRoles(item.userId,item.roleId)" class="btn btn-outline-primary"><i class="fa fa-edit"></i> Edit</button>
+        </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>

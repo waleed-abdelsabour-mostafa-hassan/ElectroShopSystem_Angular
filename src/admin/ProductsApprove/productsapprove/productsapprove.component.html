@@ -1,0 +1,71 @@
+<div class="container m-2">
+
+      <table id="tbl" class="table  table-hover table-bordered table-striped ">
+        <thead>
+          <tr class="bg-dark text-light">
+            <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Price After Discount</th>
+          <th>Img</th>
+          <th>FirstApprove</th>
+          <th>SubCategoryName</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let prod of products">
+          <tr class="bg-light">
+            <td>{{prod.id}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.discount}}</td>
+            <td>{{prod.priceAfterDisc}}</td>
+            <td><img [src]="prod.img" style="width: 100px;height:100px;"/></td>
+            <td>{{prod.firstAprove}}</td>
+            <td>{{prod.subCategoryName}}</td>
+
+            <td>
+                <a
+                  class="btn btn-secondary"
+                  (click)="gotoProductDetails(prod.id)">Details</a>&nbsp;
+                  <button
+                    class="btn btn-success"
+                    (click)="ChangeProductApprove(prod.id, prod.firstAprove=true)">
+                    Approve
+                  </button>&nbsp;
+                <button
+                class="btn btn-danger"
+                (click)="DeleteProduct(prod.id, $event)">
+                Delete X
+              </button>
+
+              </td>
+          </tr>
+
+        </tbody>
+      </table>
+    <div>
+    </div>
+
+      </div>
+
+
+    <!-- Modal -->
+    <!-- <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+      <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Delete Alert </h4>
+                      </div>
+             <div class="modal-body">
+                        <p> You have chosen {{num}} item to delete. Do you really want to delete??</p>
+                      </div>
+                  <div class="modal-footer">
+                    <button id="btnClose" type="button"(click)="onCloseHandled()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" (click)="DeleteConfirm()">Confirm Delete </button>                  </div>
+         </div>
+          </div>
+    </div> -->
+
+

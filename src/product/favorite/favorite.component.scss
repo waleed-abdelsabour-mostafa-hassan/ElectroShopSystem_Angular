@@ -1,0 +1,25 @@
+
+ .sec {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .chaildPrducts {
+    display: flex;
+    margin: 10px;
+    width: 270px;
+    padding: 10px;
+  }
+  @media (min-width: 1200px) {
+    .col-xl-4 {
+      flex: 0 0 auto;
+      width: 32%;
+    }
+  }
+  .btnn {
+    /* color: #eee; */
+    height: 40px;
+  }

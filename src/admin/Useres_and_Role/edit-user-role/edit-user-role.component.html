@@ -1,0 +1,28 @@
+
+<div class="container">
+  <div class="alert alert-primary mt-4" role="alert">
+    <strong>Edie Role User</strong>
+  </div>
+  <div class="col-md-5">
+<form [formGroup]="userform"  (submit)="EditRoleuser()"  >
+  <div class="form-group mt-2">
+    <label for="username"> userName</label>
+    <input type="text" readonly formControlName="username"
+      class="form-control" name="username" id="username" aria-describedby="helpId" >
+  </div>
+  <div class="form-group mt-2">
+    <label for="rolename"> Role Name</label>
+    <select  [ngClass]="{'is-invalid' :this.userform.get('rolename')?.invalid && this.userform.get('rolename')?.touched}" (change)="onRolesChange()"  class="form-control" formControlName="rolename" name="rolename" id="rolename">
+      <option *ngFor="let item of allroles"  [value]="item.id">{{item.name}}</option>
+    </select>
+  </div>
+  <div class="text-danger"
+  *ngIf="this.userform.get('rolename')?.invalid && (this.userform.get('rolename')?.touched ||this.userform.get('rolename')?.dirty)">
+  {{this.messageValidate.rolename.required}} </div>
+
+  <div class="sub01">
+<button type="submit" [disabled]="userform.invalid" class="btn btn-outline-primary">Edit <i class="fa fa-edit"></i></button>
+  </div>
+</form>
+  </div>
+</div>

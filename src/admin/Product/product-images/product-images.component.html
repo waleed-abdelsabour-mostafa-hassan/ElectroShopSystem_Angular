@@ -1,0 +1,47 @@
+<p>product-images works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 con">
+      <!--Adding Some Images-->
+      <div class="overlay">
+        <p>Add Some Images</p>
+      </div>
+      <!--image-->
+      <div id="imgHhidden" class="form-group mt-2">
+        <label for="image" class="mb-1">Image</label>
+        <input
+          (change)="onFileChanged($event)"
+          type="file"
+          accept="image/*"
+          multiple
+          id="image"
+          name="image"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <button
+        *ngIf="ProductImgs.length > 0"
+        (click)="RemoveAllImages()"
+        class="col-4 btn btn-danger"
+      >
+        Remove All Images
+      </button>
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+      <div class="col-3" *ngFor="let img of ProductImgs">
+        <div class="asd card mt-5">
+          <img style="height: 200px" [src]="img.name" />
+          <button
+            [id]="img.id"
+            (click)="RemoveImg($event)"
+            class="btn btn-danger dellink"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container mt-3">
+  <h2>Sub Category</h2>
+  <form [formGroup]='insertSubCategory' (ngSubmit)="addSubCategory()" >
+    <div class="mb-3">
+      <label >SubCategory Name:</label>
+      <input type="text" class="form-control" formControlName="name"  placeholder="Enter SubCategory Name" >
+    </div>
+    <div class="mb-3">
+      <select name="category" class="form-control"  formControlName="categoryID">
+        <option [value]="cetgo.id" *ngFor="let cetgo of Categories" >
+          {{cetgo.name}}
+        </option>
+      </select>
+    </div>
+
+    <button  [disabled]="insertSubCategory.invalid" type="submit"  class="btn btn-primary">create</button>
+  </form>
+</div>

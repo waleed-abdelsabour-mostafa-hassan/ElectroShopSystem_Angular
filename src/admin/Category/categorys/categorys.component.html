@@ -1,0 +1,23 @@
+<div class="container">
+  <a  (click)="addCategory()" class="btn btn-outline-success mt-3">Add Category <i class="fa fa-plus-circle"></i></a> <br>
+   <input #myinput class="m-2 form-control" type="text"[(ngModel)]="name" placeholder="Search" (ngModelChange)="search()">
+  <table class="table  table-hover">
+    <thead>
+      <tr>
+        <th (click)="sort('id')">Category ID&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('id')">Category Name&nbsp;<i class="fa fa-sort"></i></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categorylist |orderBy:key:reverse">
+
+        <td>{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td> <a (click)="editCategory(category)" class="btn btn-success">Edit</a></td>
+        <td><a  (click)="Delete(category.id)" class="btn btn-danger">delete</a></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

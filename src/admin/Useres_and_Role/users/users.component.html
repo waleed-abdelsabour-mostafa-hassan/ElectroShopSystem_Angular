@@ -1,0 +1,56 @@
+<div class="container m-2">
+
+<p (click)="AddUserNavig()" class="btn btn-outline-success mt-3">Add New User <i class="fa fa-plus-circle"></i></p>
+
+  <table id="tbl" class="table  table-hover table-bordered table-striped ">
+    <thead>
+      <tr class="bg-dark text-light">
+        <th>userName </th>
+        <th>Email</th>
+        <th>Confirm Email </th>
+        <th>Address</th>
+
+        <th><input type="checkbox" id="selectAll" class="ckheader" (change)="SelectAll()"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+      <tr class="bg-light">
+        <td scope="row">{{user.userName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.emailConfirmed}}</td>
+        <td>{{user.address}}</td>
+
+      <td>
+        <input type="checkbox"  class="ckitem" value="{{user.id}}" (change)="ItemChecked($event)">
+      </td>
+      </tr>
+
+    </tbody>
+  </table>
+<div>
+  <button type="submit" (click)=" DeleteCount()"  [disabled]="!IsDelete()" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#modelId">
+    <i class="fa fa-trash-o"></i> Delete
+  </button>
+</div>
+
+  </div>
+
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+        <div class="modal-content">
+              <div class="modal-header">
+                    <h4 class="modal-title">Delete Alert </h4>
+                  </div>
+         <div class="modal-body">
+                    <p> You have chosen {{num}} item to delete. Do you really want to delete??</p>
+                  </div>
+              <div class="modal-footer">
+                <button id="btnClose" type="button"(click)="onCloseHandled()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" (click)="DeleteConfirm()">Confirm Delete </button>                  </div>
+     </div>
+      </div>
+</div>
+
+

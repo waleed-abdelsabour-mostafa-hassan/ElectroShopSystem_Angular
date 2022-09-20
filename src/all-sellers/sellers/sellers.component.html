@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <div class="row">
+    <!-- product -->
+    <table
+      *ngIf="AllSellers != null"
+      class="tt table table-striped table-hover"
+    >
+      <thead>
+        <tr>
+          <th class="bgFont" scope="col">Name</th>
+          <th class="bgFont" scope="col">Quantity of Product</th>
+          <!-- <th class="bgFont" scope="col">image</th> -->
+          <th class="bgFont" scope="col">all Products</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="product col-3 mb-5" *ngFor="let seller of AllSellers">
+          <th scope="col">{{ seller.name }}</th>
+
+          <th scope="col">{{ seller.productCount }}</th>
+          <!-- <th scope="col">
+            <img src=" {{ seller.img }}" width="”280″" alt="" />
+          </th> -->
+          <th scope="col">
+            <button
+              (click)="gotoProductDetails(seller.id)"
+              class="btn btn-primary"
+            >
+              View All Product
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h1
+      class="m-5 d-flex justify-content-center align-items-center"
+      *ngIf="AllSellers == null"
+    >
+      No Order Here , Be Ready To Receive Order
+    </h1>
+  </div>
+</div>

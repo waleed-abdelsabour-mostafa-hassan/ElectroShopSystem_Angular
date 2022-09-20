@@ -1,0 +1,378 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="col-12 col-md-2 con">
+        <img
+          id="image"
+          style="width: 100%; height: 200px; display: block"
+          [src]="productModel.img"
+        />
+        <div class="overlay" (click)="UpdateImageClick()">
+          <p>Update_Image</p>
+        </div>
+        <!--image-->
+        <div id="imgHhidden" class="form-group mt-2">
+          <label for="image" class="mb-1">Image</label>
+          <input
+            (change)="onFileChanged($event)"
+            type="file"
+            accept="image/*"
+            #image="ngModel"
+            [class.validInput]="image.valid"
+            [class.invalidInput]="image.invalid && image.touched"
+            id="image"
+            name="image"
+            [(ngModel)]="productModel.img"
+            class="form-control"
+          />
+          <div class="text-danger" *ngIf="image.invalid && image.touched">
+            <small class="text-danger" *ngIf="image.errors!['required']"
+              >Image is required</small
+            >
+            <small class="text-danger" *ngIf="image.errors!['pattern']"
+              >Select Correct Image</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8">
+        <form
+          #productForm="ngForm"
+          (ngSubmit)="saveProduct()"
+          enctype="multipart/form-data"
+        >
+          <!--Name Field-->
+          <div class="form-group mt-5">
+            <label for="name" class="mb-1">Name</label>
+            <input
+              type="text"
+              pattern="[a-zA-Z 0-9]{2,100}"
+              #name="ngModel"
+              required
+              [class.validInput]="name.valid || name.value == productModel.name"
+              [class.invalidInput]="name.invalid && name.touched"
+              id="name"
+              name="name"
+              [(ngModel)]="productModel.name"
+              class="form-control"
+            />
+            <div class="text-danger" *ngIf="name.invalid && name.touched">
+              <small class="text-danger" *ngIf="name.errors!['required']"
+                >Name Is Required</small
+              >
+              <small class="text-danger" *ngIf="name.errors!['pattern']"
+                >Please Enter Valid Name</small
+              >
+            </div>
+          </div>
+          <!--description-->
+          <div class="form-group mt-2">
+            <label for="description" class="mb-1">Description</label>
+            <input
+              type="text"
+              pattern="[a-zA-Z 0-9]{10,100}"
+              #description="ngModel"
+              required
+              [class.validInput]="
+                description.valid ||
+                description.value == productModel.description
+              "
+              [class.invalidInput]="description.invalid && description.touched"
+              id="description"
+              name="description"
+              [(ngModel)]="productModel.description"
+              class="form-control"
+            />
+            <div
+              class="text-danger"
+              *ngIf="description.invalid && description.touched"
+            >
+              <small class="text-danger" *ngIf="description.errors!['required']"
+                >You must Add Description</small
+              >
+              <small class="text-danger" *ngIf="description.errors!['pattern']"
+                >Please Use Valid Description</small
+              >
+            </div>
+          </div>
+          <!--price-->
+          <div class="form-group mt-2">
+            <label for="price" class="mb-1"> Price </label>
+            <input
+              type="text"
+              pattern="[0-9.]{2,9}"
+              #price="ngModel"
+              required
+              [class.validInput]="
+                price.valid || price.value == productModel.price
+              "
+              [class.invalidInput]="price.invalid && price.touched"
+              id="price"
+              name="price"
+              [(ngModel)]="productModel.price"
+              class="form-control"
+            />
+            <div class="text-danger" *ngIf="price.invalid && price.touched">
+              <small class="text-danger" *ngIf="price.errors!['required']"
+                >You must Add Price</small
+              >
+              <small class="text-danger" *ngIf="price.errors!['pattern']"
+                >Price Not Valid</small
+              >
+            </div>
+          </div>
+          <!--SubCategory-->
+
+          <div class="form-group mt-2">
+            <label for="categoryId" class="mb-1">Select Genre</label>
+            <select
+              #subCategoryID="ngModel"
+              required
+              [class.validInput]="
+                (subCategoryID.value! > 0 && subCategoryID.touched) ||
+                subCategoryID.value == productModel.subCategoryID
+              "
+              [class.invalidInput]="
+                subCategoryID.value == -1 && subCategoryID.touched
+              "
+              id="subCategoryID"
+              name="subCategoryID"
+              [(ngModel)]="productModel.subCategoryID"
+              class="form-control"
+            >
+              <option value="-1">Select SubCategory</option>
+              <option
+                [selected]="category.name == productModel.subCategoryName"
+                *ngFor="let category of SubCategories"
+                value="{{ category.id }}"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+            <div
+              class="text-danger"
+              *ngIf="subCategoryID.value <= 0 && subCategoryID.touched"
+            >
+              <small class="text-danger" *ngIf="subCategoryID.value <= 0">
+                Please Select Option
+              </small>
+              <small
+                class="text-danger"
+                *ngIf="subCategoryID.errors!['required']"
+              >
+                Please Select Option</small
+              >
+            </div>
+          </div>
+
+          <!--Discount-->
+          <div class="form-group mt-2">
+            <label for="discount" class="mb-1"> Discount (:$)</label>
+            <input
+              type="text"
+              pattern="[0-9]{1,9}"
+              #discount="ngModel"
+              required
+              [class.validInput]="
+                discount.valid || discount.value == productModel.discount
+              "
+              [class.invalidInput]="discount.invalid && discount.touched"
+              id="discount"
+              name="discount"
+              [(ngModel)]="productModel.discount"
+              class="form-control"
+            />
+            <div
+              class="text-danger"
+              *ngIf="discount.invalid && discount.touched"
+            >
+              <small class="text-danger" *ngIf="discount.errors!['required']"
+                >Specify Discount | (0) for No Discount</small
+              >
+              <small class="text-danger" *ngIf="discount.errors!['pattern']"
+                >Discount Not Valid</small
+              >
+            </div>
+          </div>
+          <!--Quantity-->
+          <div class="form-group mt-2">
+            <label for="quantity" class="mb-1"> Quantity </label>
+            <input
+              type="text"
+              pattern="[0-9]{1,9}"
+              #quantity="ngModel"
+              required
+              [class.validInput]="
+                quantity.valid || quantity.value == productModel.countProduct
+              "
+              [class.invalidInput]="quantity.invalid && quantity.touched"
+              id="quantity"
+              name="quantity"
+              [(ngModel)]="productModel.countProduct"
+              class="form-control"
+            />
+            <div
+              class="text-danger"
+              *ngIf="quantity.invalid && quantity.touched"
+            >
+              <small class="text-danger" *ngIf="quantity.errors!['required']"
+                >You must Specify Quantity</small
+              >
+              <small class="text-danger" *ngIf="quantity.errors!['pattern']"
+                >Quantity Not Valid</small
+              >
+            </div>
+          </div>
+          <!--optional Fields-->
+          <div *ngIf="productModel.ram.length > 0">
+            <!--Ram-->
+            <div class="form-group mt-2">
+              <label for="ram" class="mb-1"> Ram (GB)</label>
+              <input
+                type="text"
+                pattern="[0-9]{1,9}"
+                #ram="ngModel"
+                required
+                [class.validInput]="ram.valid || ram.value == productModel.ram"
+                [class.invalidInput]="ram.invalid && ram.touched"
+                id="ram"
+                name="ram"
+                [(ngModel)]="productModel.ram"
+                class="form-control"
+              />
+              <div class="text-danger" *ngIf="ram.invalid && ram.touched">
+                <small class="text-danger" *ngIf="ram.errors!['required']"
+                  >You must Specify Ram</small
+                >
+                <small class="text-danger" *ngIf="ram.errors!['pattern']"
+                  >Ram Not Valid</small
+                >
+              </div>
+            </div>
+            <!--Hard Drive-->
+            <div class="form-group mt-2">
+              <label for="hard" class="mb-1"> HardDisk (:GB)</label>
+              <input
+                type="text"
+                #hard="ngModel"
+                required
+                [class.validInput]="
+                  hard.valid || hard.value == productModel.hardDrive
+                "
+                [class.invalidInput]="hard.invalid && hard.touched"
+                id="hard"
+                name="hard"
+                [(ngModel)]="productModel.hardDrive"
+                class="form-control"
+              />
+              <div class="text-danger" *ngIf="hard.invalid && hard.touched">
+                <small class="text-danger" *ngIf="hard.errors!['required']"
+                  >You must Specify HardDisk Capacidy</small
+                >
+                <small class="text-danger" *ngIf="hard.errors!['pattern']"
+                  >HardDisk Capacity Not Valid</small
+                >
+              </div>
+            </div>
+            <!--camera-->
+            <div class="form-group mt-2">
+              <label for="camera" class="mb-1"> Camera (:M.pixels)</label>
+              <input
+                type="text"
+                #camera="ngModel"
+                required
+                [class.validInput]="
+                  camera.valid || camera.value == productModel.camera
+                "
+                [class.invalidInput]="camera.invalid && camera.touched"
+                id="camera"
+                name="camera"
+                [(ngModel)]="productModel.camera"
+                class="form-control"
+              />
+              <div class="text-danger" *ngIf="camera.invalid && camera.touched">
+                <small class="text-danger" *ngIf="camera.errors!['required']"
+                  >You must Specify Camera Capacity</small
+                >
+                <small class="text-danger" *ngIf="camera.errors!['pattern']"
+                  >Camera Not Valid</small
+                >
+              </div>
+            </div>
+            <!--Processor-->
+            <div class="form-group mt-2">
+              <label for="processor" class="mb-1"> Processor (:GHZ)</label>
+              <input
+                type="text"
+                #processor="ngModel"
+                required
+                [class.validInput]="
+                  processor.valid || processor.value == productModel.processor
+                "
+                [class.invalidInput]="processor.invalid && processor.touched"
+                id="processor"
+                name="processor"
+                [(ngModel)]="productModel.processor"
+                class="form-control"
+              />
+              <div
+                class="text-danger"
+                *ngIf="processor.invalid && processor.touched"
+              >
+                <small class="text-danger" *ngIf="processor.errors!['required']"
+                  >You must Specify Processor</small
+                >
+                <small class="text-danger" *ngIf="processor.errors!['pattern']"
+                  >Processor Not Valid</small
+                >
+              </div>
+            </div>
+            <!--screenSize-->
+            <div class="form-group mt-2">
+              <label for="screenSize" class="mb-1">
+                Screen Size (:Pixels)</label
+              >
+              <input
+                type="text"
+                #screenSize="ngModel"
+                required
+                pattern="[0-9]{1,9}"
+                [class.validInput]="
+                  screenSize.valid ||
+                  screenSize.value == productModel.screenSize
+                "
+                [class.invalidInput]="screenSize.invalid && screenSize.touched"
+                id="screenSize"
+                name="screenSize"
+                [(ngModel)]="productModel.screenSize"
+                class="form-control"
+              />
+              <div
+                class="text-danger"
+                *ngIf="screenSize.invalid && screenSize.touched"
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="screenSize.errors!['required']"
+                  >You must Specify ScreenSize</small
+                >
+                <small class="text-danger" *ngIf="screenSize.errors!['pattern']"
+                  >Screen Size Not Valid</small
+                >
+              </div>
+            </div>
+          </div>
+
+          <input
+            type="submit"
+            value="Save Data"
+            [disabled]="productForm.invalid"
+            class="mt-4 form-control btn btn-outline-success"
+            style="margin-bottom: 5px"
+          />
+        </form>
+      </div>
+      <div class="col-12 col-md-2 mt-5"></div>
+    </div>
+  </div>
+</div>

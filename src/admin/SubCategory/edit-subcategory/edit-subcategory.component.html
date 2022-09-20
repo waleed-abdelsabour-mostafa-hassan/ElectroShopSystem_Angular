@@ -1,0 +1,20 @@
+<div class="container mt-3">
+  <h2> Edit Category</h2>
+  <form [formGroup]="updateSubCategory" (ngSubmit)="editSubCategory()" >
+    <div class="mb-3">
+      <label >SubCategory Name:</label>
+      <input type="text" class="form-control" formControlName="name" >
+    </div>
+    <div class="mb-3">
+      <label >Category Name:</label>
+      <select  class="form-control" formControlName="subid">
+        <option [value]="cetgo.id" *ngFor="let cetgo of caegorys" >
+          {{cetgo.name}}
+        </option>
+      </select>
+
+    </div>
+
+    <button type="submit"  class="btn btn-primary">edit</button>
+  </form>
+</div>
